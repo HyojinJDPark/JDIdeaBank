@@ -1,0 +1,19 @@
+#define DEBUGMODE_FILEMODE		0	
+#define DEBUGMODE_CONSOLE		0
+
+extern FILE* fileDebug_fd;
+extern int Log_Print(const char*,...);
+
+#define LOGPRINTF(msg...)   Log_Print(msg)
+
+int Log_Print(const char* msg,...){
+
+#if DEBUGMODE_FILEMODE
+	printf(msg);
+#endif
+
+#if DEBUGMODE_CONSOLE
+	fprintf(fileDebug_fd,msg);
+#endif
+	return 0;
+}
